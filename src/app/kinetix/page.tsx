@@ -147,7 +147,21 @@ export default function KinetixPage() {
   );
 
   return (
-    <div className="bg-[#050505] text-neutral-300 min-h-screen flex">
+    <div className="bg-[#050505] text-neutral-300 min-h-screen flex flex-col">
+      <header className="grid grid-cols-[1fr_auto_1fr] items-center px-6 py-4 bg-neutral-950 border-b border-neutral-800 shrink-0">
+        <span className="text-[1.1rem] font-bold tracking-[0.2em] uppercase bg-linear-to-r from-cyan-300 via-cyan-200 to-violet-400 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(34,211,238,0.15)]">
+          kinetix
+        </span>
+        <a
+          href="https://valsys.dev/#work"
+          className="btn-valsys-back inline-flex items-center justify-center gap-2 justify-self-center"
+        >
+          Back to <span className="valsys-gradient">Valsys</span>
+          <span className="arrow text-2xl">→</span>
+        </a>
+        <div />
+      </header>
+      <div className="flex flex-1 min-h-0">
       {/* Sidebar */}
       <aside className="w-64 border-r border-neutral-800/50 flex flex-col hidden lg:flex">
         <div className="p-8">
@@ -690,6 +704,7 @@ export default function KinetixPage() {
           </div>
         </div>
       )}
+      </div>
     </div>
   );
 }

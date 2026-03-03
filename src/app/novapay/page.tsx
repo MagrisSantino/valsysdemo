@@ -130,16 +130,26 @@ export default function NovapayPage() {
 
   return (
     <div className="bg-slate-50 text-slate-600 text-sm font-light m-0 p-0 selection:bg-blue-100 selection:text-blue-900">
-      <div className="flex h-screen overflow-hidden">
+      <header className="grid grid-cols-[1fr_auto_1fr] items-center px-6 py-4 bg-slate-900 border-b border-slate-700 shrink-0">
+        <span className="text-[1.1rem] font-bold tracking-[0.2em] uppercase bg-linear-to-r from-cyan-300 via-cyan-200 to-violet-400 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(34,211,238,0.15)]">
+          novapay
+        </span>
+        <a
+          href="https://valsys.dev/#work"
+          className="btn-valsys-back inline-flex items-center justify-center gap-2 justify-self-center"
+        >
+          Back to <span className="valsys-gradient">Valsys</span>
+          <span className="arrow text-2xl">→</span>
+        </a>
+        <div />
+      </header>
+      <div className="flex h-[calc(100vh-4rem)] overflow-hidden">
         {/* Sidebar */}
         <aside className="w-16 lg:w-64 border-r border-slate-200 bg-white flex flex-col z-20 transition-all duration-300">
           <div className="h-16 flex items-center px-6 border-b border-slate-100">
-            <div className="text-slate-950 font-semibold tracking-tighter text-lg">
-              NX
+            <div className="text-slate-500 font-semibold tracking-widest text-sm uppercase">
+              NP
             </div>
-            <span className="ml-2 text-xs font-semibold text-slate-400 hidden lg:block tracking-widest uppercase">
-              Nexus
-            </span>
           </div>
 
           <nav className="flex-1 px-3 py-6 space-y-1">

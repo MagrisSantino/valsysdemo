@@ -106,3 +106,80 @@ body {
   background-image: radial-gradient(#e2e8f0 1px, transparent 1px);
   background-size: 24px 24px;
 }
+
+/* Botón Back to Valsys: forma pill, tipografía ancha y profesional (estética valsys.dev) */
+.btn-valsys-back {
+  position: relative;
+  background: #0a0a0a;
+  color: #fff;
+  padding: 1rem 2.75rem;
+  font-size: 1.125rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  border-radius: 9999px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid transparent;
+  background-clip: padding-box;
+  box-shadow:
+    0 0 0 1px rgba(34, 211, 238, 0.3),
+    0 0 20px -5px rgba(34, 211, 238, 0.2),
+    0 0 0 1px rgba(139, 92, 246, 0.2);
+}
+.btn-valsys-back .valsys-gradient {
+  background: linear-gradient(90deg, #a78bfa 0%, #c4b5fd 30%, #67e8f9 70%, #22d3ee 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+}
+.btn-valsys-back::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, #22d3ee, #a78bfa, #22d3ee);
+  background-size: 200% 200%;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.8;
+  transition: opacity 0.3s ease, background-position 0.5s ease;
+}
+.btn-valsys-back:hover {
+  transform: scale(1.05);
+  box-shadow:
+    0 0 0 1px rgba(34, 211, 238, 0.6),
+    0 0 30px 2px rgba(34, 211, 238, 0.4),
+    0 0 40px -5px rgba(139, 92, 246, 0.35);
+  animation: btn-valsys-glow 1.5s ease-in-out infinite;
+}
+.btn-valsys-back:hover::before {
+  opacity: 1;
+  background-position: 100% 50%;
+}
+@keyframes btn-valsys-glow {
+  0%, 100% {
+    box-shadow:
+      0 0 0 1px rgba(34, 211, 238, 0.6),
+      0 0 30px 2px rgba(34, 211, 238, 0.4),
+      0 0 40px -5px rgba(139, 92, 246, 0.35);
+  }
+  50% {
+    box-shadow:
+      0 0 0 1px rgba(34, 211, 238, 0.8),
+      0 0 40px 5px rgba(34, 211, 238, 0.5),
+      0 0 50px -2px rgba(139, 92, 246, 0.5);
+  }
+}
+.btn-valsys-back span.arrow {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+.btn-valsys-back:hover span.arrow {
+  transform: translateX(4px);
+}

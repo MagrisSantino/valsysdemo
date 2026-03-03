@@ -154,12 +154,25 @@ export default function OmnistockPage() {
   const unreadCount = DEMO_NOTIFICATIONS.filter((n) => n.unread).length;
 
   return (
-    <div className="bg-[#020617] text-slate-400 text-sm antialiased selection:bg-blue-500/30 overflow-hidden">
-      <div className="flex h-screen w-full">
+    <div className="bg-[#020617] text-slate-400 text-sm antialiased selection:bg-blue-500/30 overflow-hidden flex flex-col">
+      <header className="grid grid-cols-[1fr_auto_1fr] items-center px-6 py-4 bg-slate-950 border-b border-slate-800 shrink-0">
+        <span className="text-[1.1rem] font-bold tracking-[0.2em] uppercase bg-linear-to-r from-cyan-300 via-cyan-200 to-violet-400 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(34,211,238,0.15)]">
+          omnistock
+        </span>
+        <a
+          href="https://valsys.dev/#work"
+          className="btn-valsys-back inline-flex items-center justify-center gap-2 justify-self-center"
+        >
+          Back to <span className="valsys-gradient">Valsys</span>
+          <span className="arrow text-2xl">→</span>
+        </a>
+        <div />
+      </header>
+      <div className="flex flex-1 min-h-0 w-full">
         {/* Sidebar */}
         <aside className="w-16 border-r border-slate-800/60 flex flex-col items-center py-6 gap-8 bg-[#020617] z-20">
-          <div className="text-white font-semibold tracking-tighter text-lg mb-4">
-            LX
+          <div className="text-slate-500 font-semibold tracking-widest text-sm uppercase mb-4">
+            OS
           </div>
           <nav className="flex flex-col gap-6">
             <button

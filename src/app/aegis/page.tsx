@@ -164,7 +164,22 @@ export default function AegisPage() {
     : null;
 
   return (
-    <div className="bg-zinc-50 text-zinc-600 min-h-screen flex overflow-hidden">
+    <div className="bg-zinc-50 text-zinc-600 min-h-screen flex flex-col overflow-hidden">
+      {/* Header: un solo logo (tipografía marca) + botón volver */}
+      <header className="grid grid-cols-[1fr_auto_1fr] items-center px-6 py-4 bg-zinc-900/95 border-b border-zinc-700/50 shrink-0">
+        <span className="text-[1.1rem] font-bold tracking-[0.2em] uppercase bg-linear-to-r from-cyan-300 via-cyan-200 to-violet-400 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(34,211,238,0.15)]">
+          aegis
+        </span>
+        <a
+          href="https://valsys.dev/#work"
+          className="btn-valsys-back inline-flex items-center justify-center gap-2 justify-self-center"
+        >
+          Back to <span className="valsys-gradient">Valsys</span>
+          <span className="arrow text-2xl">→</span>
+        </a>
+        <div />
+      </header>
+      <div className="flex flex-1 overflow-hidden">
       {/* Sidebar */}
       <aside className="w-64 bg-white border-r border-zinc-200 flex flex-col p-6 gap-8 shrink-0">
         <div className="flex items-center gap-2">
@@ -846,6 +861,7 @@ export default function AegisPage() {
           </div>
         )}
       </main>
+      </div>
     </div>
   );
 }
