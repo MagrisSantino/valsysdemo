@@ -9,8 +9,6 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -112,10 +110,10 @@ body {
   position: relative;
   background: #0a0a0a;
   color: #fff;
-  padding: 1rem 2.75rem;
-  font-size: 1.125rem;
+  padding: 0.55rem 1.1rem;
+  font-size: 0.75rem;
   font-weight: 700;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   border-radius: 9999px;
   overflow: hidden;
@@ -182,4 +180,12 @@ body {
 }
 .btn-valsys-back:hover span.arrow {
   transform: translateX(4px);
+}
+
+@media (min-width: 640px) {
+  .btn-valsys-back {
+    padding: 1rem 2.75rem;
+    font-size: 1.125rem;
+    letter-spacing: 0.18em;
+  }
 }

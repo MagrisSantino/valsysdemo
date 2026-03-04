@@ -154,7 +154,7 @@ export default function OmnistockPage() {
   const unreadCount = DEMO_NOTIFICATIONS.filter((n) => n.unread).length;
 
   return (
-    <div className="bg-[#020617] text-slate-400 text-sm antialiased selection:bg-blue-500/30 overflow-hidden flex flex-col">
+    <div className="bg-[#020617] text-slate-400 text-sm antialiased selection:bg-blue-500/30 overflow-hidden flex flex-col min-h-screen">
       <header className="grid grid-cols-[1fr_auto_1fr] items-center px-6 py-4 bg-slate-950 border-b border-slate-800 shrink-0">
         <span className="text-[1.1rem] font-bold tracking-[0.2em] uppercase bg-linear-to-r from-cyan-300 via-cyan-200 to-violet-400 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(34,211,238,0.15)]">
           omnistock
@@ -246,21 +246,21 @@ export default function OmnistockPage() {
         {/* Main Content */}
         <main className="flex-1 flex flex-col overflow-hidden">
           {/* Header */}
-          <header className="h-14 border-b border-slate-800/60 flex items-center justify-between px-6 bg-[#020617]/80 backdrop-blur-md">
-            <div className="flex items-center gap-4">
-              <h1 className="text-slate-200 font-medium tracking-tight text-base">
+          <header className="h-14 border-b border-slate-800/60 flex items-center justify-between px-4 md:px-6 bg-[#020617]/80 backdrop-blur-md">
+            <div className="flex items-center gap-2 md:gap-4 min-w-0">
+              <h1 className="text-slate-200 font-medium tracking-tight text-sm md:text-base truncate">
                 Inventory Command
               </h1>
-              <div className="h-4 w-px bg-slate-800" />
-              <div className="flex items-center gap-2">
+              <div className="hidden md:block h-4 w-px bg-slate-800" />
+              <div className="hidden md:flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full bg-blue-500 glow-pulse" />
                 <span className="text-xs text-slate-500 font-normal">
                   Cloud Sync Live
                 </span>
               </div>
             </div>
-            <div className="flex items-center gap-6">
-              <div className="relative flex items-center">
+            <div className="flex items-center gap-3 md:gap-6">
+              <div className="relative hidden sm:flex items-center">
                 <iconify-icon
                   icon="solar:linear-magnifer"
                   width="16"
@@ -270,10 +270,17 @@ export default function OmnistockPage() {
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Search SKU or Order..."
-                  className="bg-slate-900/50 border border-slate-800 rounded-full py-1.5 pl-9 pr-4 text-xs focus:outline-none focus:border-slate-700 w-64 placeholder:text-slate-600 transition-all"
+                  placeholder="Search SKU..."
+                  className="bg-slate-900/50 border border-slate-800 rounded-full py-1.5 pl-9 pr-4 text-xs focus:outline-none focus:border-slate-700 w-40 md:w-64 placeholder:text-slate-600 transition-all"
                 />
               </div>
+              <button
+                type="button"
+                onClick={() => setSearchQuery("")}
+                className="sm:hidden p-1.5 rounded-full hover:bg-slate-800/50 text-slate-400 hover:text-slate-200 transition-colors"
+              >
+                <iconify-icon icon="solar:linear-magnifer" width="20" />
+              </button>
               <div className="relative">
                 <button
                   type="button"
@@ -312,9 +319,9 @@ export default function OmnistockPage() {
           </header>
 
           {/* Dashboard Content */}
-          <div className="flex-1 overflow-y-auto p-6 custom-scrollbar">
+          <div className="flex-1 overflow-y-auto p-4 md:p-6 custom-scrollbar">
             {/* Stats Overview */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mb-4 md:mb-6">
               <div className="bg-slate-900/20 border border-slate-800/60 p-4 rounded-xl">
                 <div className="flex justify-between items-start mb-2">
                   <span className="text-xs font-normal text-slate-500 uppercase tracking-wider">
@@ -394,9 +401,9 @@ export default function OmnistockPage() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6">
               {/* Area Chart Section */}
-              <div className="lg:col-span-2 bg-slate-900/20 border border-slate-800/60 rounded-xl p-6 flex flex-col">
+              <div className="lg:col-span-2 bg-slate-900/20 border border-slate-800/60 rounded-xl p-4 md:p-6 flex flex-col">
                 <div className="flex justify-between items-center mb-8">
                   <div>
                     <h3 className="text-slate-200 font-medium tracking-tight text-base">
@@ -511,7 +518,7 @@ export default function OmnistockPage() {
                     <circle cx="600" cy="40" r="4" fill="#60a5fa" />
                   </svg>
                   {/* Tooltip Mockup */}
-                  <div className="absolute top-4 left-[380px] bg-slate-900 border border-slate-700 p-2 rounded-lg shadow-xl pointer-events-none">
+                  <div className="absolute top-4 left-1/2 -translate-x-1/2 md:left-95 md:translate-x-0 bg-slate-900 border border-slate-700 p-2 rounded-lg shadow-xl pointer-events-none">
                     <p className="text-[10px] text-slate-400">
                       {chartMode === "live" ? "Live · 14:00" : "History · 14:00"}
                     </p>
@@ -566,7 +573,7 @@ export default function OmnistockPage() {
 
             {/* SKU Data Table */}
             <div className="mt-6 bg-slate-900/20 border border-slate-800/60 rounded-xl overflow-hidden">
-              <div className="p-5 border-b border-slate-800/60 flex justify-between items-center">
+              <div className="p-4 md:p-5 border-b border-slate-800/60 flex justify-between items-center">
                 <div className="flex items-center gap-3">
                   <h3 className="text-slate-200 font-medium tracking-tight text-base">
                     Inventory Real-time Flow
@@ -727,7 +734,7 @@ export default function OmnistockPage() {
           {/* System Logs panel */}
           {logsOpen && (
             <div className="fixed inset-0 z-50 flex items-stretch justify-end bg-black/40 backdrop-blur-sm" onClick={() => setLogsOpen(false)}>
-              <div className="w-full max-w-md bg-[#0f172a] border-l border-slate-700/60 shadow-2xl flex flex-col" onClick={(e) => e.stopPropagation()}>
+              <div className="w-full sm:max-w-md bg-[#0f172a] border-l border-slate-700/60 shadow-2xl flex flex-col" onClick={(e) => e.stopPropagation()}>
                 <div className="p-4 border-b border-slate-700/60 flex items-center justify-between shrink-0">
                   <h3 className="text-sm font-semibold text-slate-200">System Logs</h3>
                   <button

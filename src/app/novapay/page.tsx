@@ -145,7 +145,7 @@ export default function NovapayPage() {
       </header>
       <div className="flex h-[calc(100vh-4rem)] overflow-hidden">
         {/* Sidebar */}
-        <aside className="w-16 lg:w-64 border-r border-slate-200 bg-white flex flex-col z-20 transition-all duration-300">
+        <aside className="hidden sm:flex w-16 lg:w-64 border-r border-slate-200 bg-white flex-col z-20 transition-all duration-300">
           <div className="h-16 flex items-center px-6 border-b border-slate-100">
             <div className="text-slate-500 font-semibold tracking-widest text-sm uppercase">
               NP
@@ -194,15 +194,15 @@ export default function NovapayPage() {
         </aside>
 
         {/* Main Content */}
-        <main className="flex-1 flex flex-col overflow-hidden dot-pattern">
+        <main className="flex-1 flex flex-col overflow-hidden dot-pattern pb-16 sm:pb-0">
           {/* Header */}
-          <header className="h-16 border-b border-slate-200 bg-white/80 backdrop-blur-md flex items-center justify-between px-8 z-10">
-            <div className="flex items-center space-x-4">
-              <h1 className="text-slate-900 text-base font-semibold tracking-tight">
+          <header className="h-14 md:h-16 border-b border-slate-200 bg-white/80 backdrop-blur-md flex items-center justify-between px-4 md:px-8 z-10">
+            <div className="flex items-center space-x-2 md:space-x-4">
+              <h1 className="text-slate-900 text-sm md:text-base font-semibold tracking-tight">
                 {VIEW_TITLES[sidebarActive] ?? "Executive Dashboard"}
               </h1>
-              <div className="h-4 w-px bg-slate-200" />
-              <div className="flex items-center space-x-2">
+              <div className="hidden md:block h-4 w-px bg-slate-200" />
+              <div className="hidden md:flex items-center space-x-2">
                 <span className="w-2 h-2 rounded-full bg-emerald-500" />
                 <span className="text-xs font-medium text-slate-500 uppercase tracking-wide">
                   Live Infrastructure
@@ -257,7 +257,7 @@ export default function NovapayPage() {
             {sidebarActive === "deck" && (
             <>
             {/* Quick Metrics */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6 mb-6 md:mb-8">
               <div className="bg-white border border-slate-200 p-5 rounded-xl shadow-sm hover:shadow-md transition-shadow">
                 <div className="flex justify-between items-start mb-4">
                   <div className="p-2 bg-blue-50 text-blue-600 rounded-lg">
@@ -339,7 +339,7 @@ export default function NovapayPage() {
               </button>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-8">
               {/* Main Visualization */}
               <div className="lg:col-span-2 bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden flex flex-col">
                 <div className="px-6 py-4 border-b border-slate-100 flex justify-between items-center bg-slate-50/30">
@@ -690,7 +690,7 @@ export default function NovapayPage() {
 
             {sidebarActive === "infra" && (
             <div className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6">
                 {DEMO_NODES.map((r) => (
                   <div key={r.region} className="bg-white border border-slate-200 rounded-xl shadow-sm p-6">
                     <div className="flex items-center justify-between mb-4">
@@ -720,18 +720,17 @@ export default function NovapayPage() {
           </div>
 
           {/* Footer */}
-          <footer className="h-10 border-t border-slate-200 bg-white flex items-center justify-between px-8 text-[10px] font-medium text-slate-400 uppercase tracking-widest">
-            <div className="flex items-center space-x-6">
+          <footer className="h-10 border-t border-slate-200 bg-white flex items-center justify-between px-4 md:px-8 text-[10px] font-medium text-slate-400 uppercase tracking-widest">
+            <div className="flex items-center space-x-3 md:space-x-6">
               <span>
-                Cluster Status:{" "}
-                <span className="text-emerald-500">Nominal</span>
+                Cluster: <span className="text-emerald-500">Nominal</span>
               </span>
-              <span>
+              <span className="hidden md:inline">
                 Database:{" "}
                 <span className="text-slate-600">Global Sync Active</span>
               </span>
             </div>
-            <div>© 2024 Nexus Operations Group · Ver 1.4.2</div>
+            <div className="hidden sm:block">© 2024 Nexus Operations Group · Ver 1.4.2</div>
           </footer>
 
           {toast && (
@@ -763,6 +762,30 @@ export default function NovapayPage() {
           )}
         </main>
       </div>
+
+      {/* Mobile bottom navigation */}
+      <nav className="sm:hidden fixed bottom-0 left-0 right-0 z-30 bg-slate-900 border-t border-slate-700 flex justify-around items-center py-2 px-2">
+        {([
+          { id: "deck", icon: "solar:widget-linear", label: "Dashboard" },
+          { id: "ledger", icon: "solar:transfer-horizontal-linear", label: "Ledger" },
+          { id: "audits", icon: "solar:shield-check-linear", label: "Audits" },
+          { id: "infra", icon: "solar:users-group-two-rounded-linear", label: "Infra" },
+        ] as { id: string; icon: string; label: string }[]).map((item) => (
+          <button
+            key={item.id}
+            type="button"
+            onClick={() => setSidebarActive(item.id)}
+            className={`flex flex-col items-center gap-0.5 px-4 py-1.5 rounded-xl transition-colors min-w-0 ${
+              sidebarActive === item.id
+                ? "text-blue-400 bg-blue-500/10"
+                : "text-slate-500 hover:text-slate-300"
+            }`}
+          >
+            <iconify-icon icon={item.icon} style={{ fontSize: "1.2rem" }} strokeWidth="1.5" />
+            <span className="text-[0.55rem] font-medium leading-none">{item.label}</span>
+          </button>
+        ))}
+      </nav>
     </div>
   );
 }

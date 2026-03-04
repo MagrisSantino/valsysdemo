@@ -197,16 +197,16 @@ export default function KinetixPage() {
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 flex flex-col h-screen overflow-y-auto custom-scrollbar relative">
+      <main className="flex-1 flex flex-col overflow-y-auto custom-scrollbar relative pb-16 lg:pb-0">
         {/* Subtle Glow Background */}
         <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-violet-600/5 blur-[120px] pointer-events-none" />
 
         {/* Header */}
-        <header className="h-16 border-b border-neutral-800/50 flex items-center justify-between px-8 sticky top-0 bg-[#050505]/80 backdrop-blur-md z-10">
-          <h1 className="text-lg font-semibold tracking-tight text-white">
+        <header className="h-14 md:h-16 border-b border-neutral-800/50 flex items-center justify-between px-4 md:px-8 sticky top-0 bg-[#050505]/80 backdrop-blur-md z-10">
+          <h1 className="text-base md:text-lg font-semibold tracking-tight text-white">
             {VIEW_TITLES[activeNav]}
           </h1>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 md:gap-4">
             {(activeNav === "memberships" || activeNav === "dashboard") && (
               <div className="relative">
                 <iconify-icon icon="solar:magnifer-linear" width="20" height="20" className="absolute left-3 top-1/2 -translate-y-1/2 text-neutral-500" />
@@ -214,8 +214,8 @@ export default function KinetixPage() {
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Search students..."
-                  className="w-48 pl-9 pr-4 py-2 rounded-lg bg-neutral-900/50 border border-neutral-800 text-white text-sm placeholder:text-neutral-500 focus:outline-none focus:ring-1 focus:ring-violet-500"
+                  placeholder="Search..."
+                  className="w-28 sm:w-48 pl-9 pr-4 py-2 rounded-lg bg-neutral-900/50 border border-neutral-800 text-white text-sm placeholder:text-neutral-500 focus:outline-none focus:ring-1 focus:ring-violet-500"
                 />
               </div>
             )}
@@ -223,10 +223,11 @@ export default function KinetixPage() {
               <button
                 type="button"
                 onClick={() => setModalOpen(true)}
-                className="bg-violet-600 hover:bg-violet-500 text-white text-sm font-medium px-4 py-2 rounded-lg flex items-center gap-2 transition-all shadow-lg shadow-violet-950/20"
+                className="bg-violet-600 hover:bg-violet-500 text-white text-sm font-medium px-3 md:px-4 py-2 rounded-lg flex items-center gap-2 transition-all shadow-lg shadow-violet-950/20"
               >
                 <iconify-icon icon="solar:add-circle-linear" width="18" height="18" />
-                New Subscription
+                <span className="hidden sm:inline">New Subscription</span>
+                <span className="sm:hidden">New</span>
               </button>
             )}
           </div>
@@ -234,7 +235,7 @@ export default function KinetixPage() {
 
         {/* Content by view */}
         {activeNav === "dashboard" && (
-        <div className="p-8 space-y-8">
+        <div className="p-4 md:p-8 space-y-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="glass-card p-6 rounded-2xl flex flex-col gap-4">
               <div className="flex items-center justify-between">
@@ -385,8 +386,8 @@ export default function KinetixPage() {
         )}
 
         {activeNav === "memberships" && (
-        <div className="p-8 space-y-8">
-          <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
+        <div className="p-4 md:p-8 space-y-8">
+          <div className="grid grid-cols-1 xl:grid-cols-3 gap-4 xl:gap-8">
             <div className="xl:col-span-2 glass-card rounded-2xl overflow-hidden flex flex-col">
               <div className="p-6 border-b border-neutral-800/50 flex items-center justify-between">
                 <h3 className="text-base font-medium text-white tracking-tight">Active Students</h3>
@@ -503,7 +504,7 @@ export default function KinetixPage() {
         )}
 
         {activeNav === "payments" && (
-        <div className="p-8 space-y-8">
+        <div className="p-4 md:p-8 space-y-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="glass-card p-6 rounded-2xl">
               <p className="text-xs text-neutral-500 uppercase tracking-wider mb-1">Collected</p>
@@ -538,7 +539,7 @@ export default function KinetixPage() {
         )}
 
         {activeNav === "schedules" && (
-        <div className="p-8 space-y-8">
+        <div className="p-4 md:p-8 space-y-8">
           <div className="glass-card rounded-2xl overflow-hidden">
             <div className="p-6 border-b border-neutral-800/50 flex items-center justify-between">
               <h3 className="text-base font-medium text-white">Weekly schedule</h3>
@@ -565,7 +566,7 @@ export default function KinetixPage() {
         )}
 
         {activeNav === "settings" && (
-        <div className="p-8 max-w-xl">
+        <div className="p-4 md:p-8 max-w-xl">
           <div className="glass-card rounded-2xl overflow-hidden">
             <div className="p-6 border-b border-neutral-800/50">
               <h3 className="text-base font-medium text-white">Preferences</h3>
@@ -615,6 +616,31 @@ export default function KinetixPage() {
           </div>
         )}
       </main>
+
+      {/* Mobile bottom navigation */}
+      <nav className="lg:hidden fixed bottom-0 left-0 right-0 z-30 bg-neutral-950 border-t border-neutral-800 flex justify-around items-center py-2 px-2">
+        {([
+          { id: "dashboard", icon: "solar:widget-2-linear", label: "Dashboard" },
+          { id: "memberships", icon: "solar:users-group-rounded-linear", label: "Members" },
+          { id: "payments", icon: "solar:card-2-linear", label: "Payments" },
+          { id: "schedules", icon: "solar:calendar-minimalistic-linear", label: "Schedules" },
+          { id: "settings", icon: "solar:settings-linear", label: "Settings" },
+        ] as { id: NavId; icon: string; label: string }[]).map((item) => (
+          <button
+            key={item.id}
+            type="button"
+            onClick={() => setActiveNav(item.id)}
+            className={`flex flex-col items-center gap-0.5 px-2 py-1.5 rounded-xl transition-colors min-w-0 ${
+              activeNav === item.id
+                ? "text-violet-400 bg-violet-500/10"
+                : "text-neutral-500 hover:text-neutral-300"
+            }`}
+          >
+            <iconify-icon icon={item.icon} width="20" height="20" />
+            <span className="text-[0.55rem] font-medium leading-none">{item.label}</span>
+          </button>
+        ))}
+      </nav>
 
       {/* Modal: New Subscription */}
       {modalOpen && (

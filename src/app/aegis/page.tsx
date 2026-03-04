@@ -181,7 +181,7 @@ export default function AegisPage() {
       </header>
       <div className="flex flex-1 overflow-hidden">
       {/* Sidebar */}
-      <aside className="w-64 bg-white border-r border-zinc-200 flex flex-col p-6 gap-8 shrink-0">
+      <aside className="hidden md:flex w-64 bg-white border-r border-zinc-200 flex-col p-6 gap-8 shrink-0">
         <div className="flex items-center gap-2">
           <span className="text-zinc-900 text-xl tracking-tighter font-medium mono">
             MD<span className="text-blue-600">OS</span>
@@ -302,9 +302,9 @@ export default function AegisPage() {
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 flex flex-col h-screen overflow-y-auto">
+      <main className="flex-1 flex flex-col overflow-y-auto pb-16 md:pb-0">
         {/* Header */}
-        <header className="h-16 bg-white border-b border-zinc-200 px-8 flex items-center justify-between shrink-0">
+        <header className="h-14 md:h-16 bg-white border-b border-zinc-200 px-4 md:px-8 flex items-center justify-between shrink-0">
           <div className="flex items-center gap-4">
             <h1 className="text-lg text-zinc-900 font-medium tracking-tight">
               {VIEW_TITLES[currentView].title}
@@ -319,7 +319,7 @@ export default function AegisPage() {
             )}
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="hidden md:flex items-center gap-4">
             <div className="flex items-center gap-2 px-3 py-1 bg-green-50 rounded-md border border-green-100">
               <span className="w-1.5 h-1.5 rounded-full bg-green-500" />
               <span className="text-[0.65rem] text-green-700 font-medium mono">
@@ -350,7 +350,7 @@ export default function AegisPage() {
 
         {/* Main content by view */}
         {currentView === "schedule" && (
-        <div className="p-8 flex gap-8">
+        <div className="p-4 md:p-8 flex flex-col lg:flex-row gap-4 md:gap-8">
           {/* Calendar Section */}
           <section className="flex-1 space-y-6">
             <div className="flex items-center justify-between">
@@ -399,7 +399,8 @@ export default function AegisPage() {
             </div>
 
             {/* Complete Calendar Grid */}
-            <div className="bg-white border border-zinc-200 rounded-xl overflow-hidden shadow-sm">
+            <div className="overflow-x-auto -mx-4 md:mx-0 px-4 md:px-0">
+            <div className="min-w-[480px] bg-white border border-zinc-200 rounded-xl overflow-hidden shadow-sm">
               <div className="calendar-grid border-b border-zinc-200 bg-zinc-50/50">
                 <div className="p-3 text-center border-r border-zinc-100">
                   <span className="text-[0.65rem] font-medium tracking-wider text-zinc-400 uppercase">
@@ -497,6 +498,7 @@ export default function AegisPage() {
                 })}
               </div>
             </div>
+            </div>
 
             {/* Vista central: carga de turnos o resumen del día seleccionado */}
             {selectedDay !== null && (
@@ -536,7 +538,7 @@ export default function AegisPage() {
           </section>
 
           {/* Alerts Sidebar */}
-          <section className="w-80 space-y-6 shrink-0">
+          <section className="w-full lg:w-80 space-y-6 shrink-0">
             <div className="flex items-center justify-between">
               <h2 className="text-[0.7rem] text-zinc-400 font-medium uppercase tracking-widest">
                 Live Inventory
@@ -666,17 +668,17 @@ export default function AegisPage() {
         )}
 
         {currentView === "staff" && (
-          <div className="p-8 flex flex-col gap-6">
+          <div className="p-4 md:p-8 flex flex-col gap-6">
             <div className="bg-white border border-zinc-200 rounded-xl shadow-sm overflow-hidden">
-              <div className="px-6 py-4 border-b border-zinc-100 bg-zinc-50/50 flex items-center justify-between">
+              <div className="px-4 md:px-6 py-4 border-b border-zinc-100 bg-zinc-50/50 flex flex-col sm:flex-row sm:items-center gap-3 sm:justify-between">
                 <span className="text-xs text-zinc-500 font-medium">Search and filter staff</span>
                 <div className="flex gap-2">
                   <input
                     type="text"
                     placeholder="Search by name or role..."
-                    className="px-3 py-1.5 text-xs border border-zinc-200 rounded-lg w-64 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+                    className="px-3 py-1.5 text-xs border border-zinc-200 rounded-lg w-full sm:w-64 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
                   />
-                  <button type="button" className="px-3 py-1.5 text-xs font-medium bg-zinc-100 text-zinc-700 rounded-lg hover:bg-zinc-200">
+                  <button type="button" className="px-3 py-1.5 text-xs font-medium bg-zinc-100 text-zinc-700 rounded-lg hover:bg-zinc-200 whitespace-nowrap">
                     Filter
                   </button>
                 </div>
@@ -685,7 +687,7 @@ export default function AegisPage() {
                 {DEMO_STAFF_LIST.map((person) => (
                   <div
                     key={person.id}
-                    className="px-6 py-4 flex items-center gap-4 hover:bg-zinc-50/50 transition-colors"
+                    className="px-4 md:px-6 py-3 md:py-4 flex items-center gap-3 md:gap-4 hover:bg-zinc-50/50 transition-colors"
                   >
                     <div className="w-10 h-10 rounded-full bg-zinc-200 flex items-center justify-center text-zinc-700 text-sm font-medium shrink-0">
                       {person.initials}
@@ -713,7 +715,7 @@ export default function AegisPage() {
         )}
 
         {currentView === "departmental" && (
-          <div className="p-8 flex flex-col gap-6">
+          <div className="p-4 md:p-8 flex flex-col gap-6">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {DEMO_DEPARTMENTS.map((dept) => (
                 <div
@@ -756,8 +758,8 @@ export default function AegisPage() {
         )}
 
         {currentView === "analytics" && (
-          <div className="p-8 flex flex-col gap-6">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <div className="p-4 md:p-8 flex flex-col gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <div className="bg-white border border-zinc-200 p-5 rounded-xl shadow-sm">
                 <p className="text-[10px] text-zinc-400 font-medium uppercase tracking-wider mb-1">Shift coverage</p>
                 <p className="text-2xl font-semibold text-zinc-900 mono">94%</p>
@@ -779,8 +781,8 @@ export default function AegisPage() {
                 <p className="text-xs text-zinc-500 mt-1">This month</p>
               </div>
             </div>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <div className="bg-white border border-zinc-200 rounded-xl p-6 shadow-sm">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
+              <div className="bg-white border border-zinc-200 rounded-xl p-4 md:p-6 shadow-sm">
                 <h3 className="text-sm font-semibold text-zinc-900 mb-4">Coverage by day (Oct)</h3>
                 <div className="flex items-end justify-between h-40 gap-1">
                   {[72, 85, 78, 90, 88, 82, 94].map((val, i) => (
@@ -815,7 +817,7 @@ export default function AegisPage() {
         )}
 
         {currentView === "settings" && (
-          <div className="p-8 max-w-xl">
+          <div className="p-4 md:p-8 max-w-xl">
             <div className="bg-white border border-zinc-200 rounded-xl shadow-sm overflow-hidden">
               <div className="px-6 py-4 border-b border-zinc-100 bg-zinc-50/50">
                 <h3 className="text-sm font-semibold text-zinc-900">Preferences</h3>
@@ -862,6 +864,40 @@ export default function AegisPage() {
         )}
       </main>
       </div>
+      {/* Mobile bottom navigation */}
+      <nav className="md:hidden fixed bottom-0 left-0 right-0 z-30 bg-white border-t border-zinc-200 flex justify-around items-center py-2 px-2">
+        {(["schedule", "staff", "departmental", "analytics", "settings"] as ViewId[]).map((id) => {
+          const icons: Record<ViewId, string> = {
+            schedule: "solar:calendar-minimalistic-linear",
+            staff: "solar:users-group-rounded-linear",
+            departmental: "solar:case-linear",
+            analytics: "solar:chart-square-linear",
+            settings: "solar:settings-linear",
+          };
+          const labels: Record<ViewId, string> = {
+            schedule: "Schedule",
+            staff: "Staff",
+            departmental: "Depts",
+            analytics: "Analytics",
+            settings: "Settings",
+          };
+          return (
+            <button
+              key={id}
+              type="button"
+              onClick={() => setCurrentView(id)}
+              className={`flex flex-col items-center gap-0.5 px-3 py-1.5 rounded-xl transition-colors min-w-0 ${
+                currentView === id
+                  ? "text-blue-600 bg-blue-50"
+                  : "text-zinc-400 hover:text-zinc-600"
+              }`}
+            >
+              <iconify-icon icon={icons[id]} style={{ fontSize: "1.2rem" }} />
+              <span className="text-[0.55rem] font-medium leading-none">{labels[id]}</span>
+            </button>
+          );
+        })}
+      </nav>
     </div>
   );
 }
